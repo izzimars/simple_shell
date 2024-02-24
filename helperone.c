@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _memcpy - returns a pointer to a newly allocated space in memory.
  * @dest: string.
