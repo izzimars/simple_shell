@@ -99,6 +99,12 @@ void _execute(char *path, char **args, char **envp)
 	pid_t child_pid;
 	int status;
 
+	path = pathchecker(path);
+	if (path == NULL)
+	{
+		perror("Error:");
+		exit(1);
+	}
 	child_pid = fork();
 	if (child_pid == -1)
 	{

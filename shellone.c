@@ -36,6 +36,7 @@ int main(void)
 			token = strtok(NULL, " ");
 		}
 		argv[i] = NULL;
+		if (
 		if (argv[0] != NULL)
 			_execute(argv[0], argv, NULL);
 	}
