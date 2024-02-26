@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 /**
  * _memcpy - returns a pointer to a newly allocated space in memory.
  * @dest: string.
@@ -15,10 +14,10 @@ void *_memcpy(void *dest, const void *src, size_t n)
 	size_t i;
 
 	if (dest == NULL || src == NULL)
-		return NULL;
+		return (NULL);
 	for (i = 0; i < n; i++)
 		cdest[i] = csrc[i];
-	return dest;
+	return (dest);
 }
 
 /**
@@ -91,12 +90,10 @@ char *pathchecker(char *av)
 	char *path;
 
 	if (stat(av, &st) == 0)
-	{
 		return (_strcpy(av));
-	}
 	for (env = environ; *env != NULL; env++)
 	{
-		if(_strcmp(*env, "PATH") == 0)
+		if (_strcmp(*env, "PATH") == 0)
 		{
 			path_env = _strcpy(*env);
 			break;
@@ -108,9 +105,9 @@ char *pathchecker(char *av)
 	while (token != NULL)
 	{
 		path = malloc(strlen(token) + _strlen(av) + 2);
-                _strcat(path, token);
-                _strcat(path, "/");
-                _strcat(path, av);
+		_strcat(path, token);
+		_strcat(path, "/");
+		_strcat(path, av);
 		if (stat(path, &st) == 0)
 			return (path);
 		token = strtok(NULL, ":");
@@ -121,12 +118,10 @@ char *pathchecker(char *av)
 
 /**
  * print_env - compares two strings
- * @s1: first string.
- * @s2: second string.
  * Return: 0 if s1 and s2 are equals,
  * another number if not.
  */
-void print_env()
+void print_env(void)
 {
 	char **env;
 	unsigned int i;

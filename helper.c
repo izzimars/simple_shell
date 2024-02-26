@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 /**
  * _strlen - returns the length of a string.
  * Description: 'the program's description'
@@ -8,11 +7,11 @@
  */
 int _strlen(char *s)
 {
-        int count = 0;
+	int count = 0;
 
-        while (*(s + count) != '\0')
-                count++;
-        return (count);
+	while (*(s + count) != '\0')
+		count++;
+	return (count);
 }
 
 /**
@@ -25,34 +24,33 @@ int _strlen(char *s)
 
 void buff_print(char *poutput)
 {
-        write(STDOUT_FILENO, poutput, _strlen(poutput));
+	write(STDOUT_FILENO, poutput, _strlen(poutput));
 }
 
 /**
  * _strcpy - copies the string pointed to by src,
- * including the terminating null byte, to the
- * buffer pointed to by dest.
- * @dest: destination.
+ * Description: including the terminating null byte, to the
  * @src: source.
+ *
  * Return: the pointer to dest.
  */
 
 char *_strcpy(char *src)
 {
-        int count = 0, i;
-        char *dest;
+	int count = 0, i;
+	char *dest;
 
-        i = _strlen(src);
-        dest = malloc(sizeof(char) * (i + 1));
-        while (count >= 0)
-        {
-                *(dest + count) = *(src + count);
-                if (*(src + count) == '\0')
-                        break;
-                count++;
-        }
-        dest[count] = '\0';
-        return (dest);
+	i = _strlen(src);
+	dest = malloc(sizeof(char) * (i + 1));
+	while (count >= 0)
+	{
+		*(dest + count) = *(src + count);
+		if (*(src + count) == '\0')
+			break;
+		count++;
+	}
+	dest[count] = '\0';
+	return (dest);
 }
 
 /**
@@ -62,8 +60,6 @@ char *_strcpy(char *src)
  * @new_size: new size, in bytes, of the new memory block.
  *
  * Return: ptr.
- * if new_size == old_size, returns ptr without changes.
- * if malloc fails, returns NULL.
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -72,7 +68,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_size == old_size)
 		return (ptr);
 	if (ptr == NULL)
-		return malloc(new_size);
+		return (malloc(new_size));
 	if (new_size == 0)
 	{
 		free(ptr);
@@ -92,7 +88,10 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 /**
  * _execute - returns the length of a string.
  * Description: 'the program's description'
- * @s: input stringeturn.
+ * @path: input stringeturn.
+ * @args: Well spree and great.
+ * @envp: well see mmore space.
+ *
  * Return: length of a string.
  */
 void _execute(char *path, char **args, char **envp)

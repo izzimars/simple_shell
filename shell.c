@@ -1,47 +1,49 @@
 #include "main.h"
+/**
+ * main - stat example
+ *
+ * Return: Always 0.
+ */
 int main(void)
 {
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t bytes_read;
-    char *token;
-    int i = 0;
-    char **argv;
+	char *line = NULL, (*token), (**argv);
+	size_t len = 0;
+	ssize_t bytes_read;
+	int i = 0;
 
-    while (1)
-    {
-        buff_print("#cisfun$");
-        bytes_read = getline(&line, &len, stdin);
-        if (bytes_read == -1)
-        {
-            perror("Error:");
-            exit(-1);
-        }
-        if (line[bytes_read - 1] == '\n')
-            line[bytes_read - 1] = '\0';
-        token = strtok(line, " ");
-        argv = malloc(sizeof(char *) * 64);
-        while (token != NULL)
-        {
-            argv[i] = _strcpy(token);
-            ++i;
-            if (i == 64)
-                argv = _realloc(argv, i, (2 * i));
-            token = strtok(NULL, " ");
-        }
-        argv[i] = NULL;
-	if (_strcmp(argv[0], "env") == 0)
+	while (1)
 	{
-		print_env();
-		continue;
+		buff_print("#cisfun$");
+		bytes_read = getline(&line, &len, stdin);
+		if (bytes_read == -1)
+		{
+			perror("Error:");
+			exit(-1);
+		}
+		if (line[bytes_read - 1] == '\n')
+			line[bytes_read - 1] = '\0';
+		token = strtok(line, " ");
+		argv = malloc(sizeof(char *) * 64);
+		while (token != NULL)
+		{
+			argv[i] = _strcpy(token);
+			++i;
+			if (i == 64)
+				argv = _realloc(argv, i, (2 * i));
+			token = strtok(NULL, " ");
+		}
+		argv[i] = NULL;
+		if (_strcmp(argv[0], "exit") == 0)
+			exit(1);
+		else if (_strcmp(argv[0], "env") == 0)
+			print_env();
+		else if (argv[0] != NULL)
+			_execute(argv[0], argv, NULL);
+		for (int j = 0; j < i; j++)
+			free(argv[j]);
+		free(argv);
+		i = 0;
 	}
-	else if (argv[0] != NULL)
-            _execute(argv[0], argv, NULL);
-        for (int j = 0; j < i; j++)
-            free(argv[j]);
-        free(argv);
-        i = 0;
-    }
-    return 0;
+	return (0);
 }
 
