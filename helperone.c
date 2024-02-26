@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * _memcpy - returns a pointer to a newly allocated space in memory.
  * @dest: string.
@@ -82,37 +83,40 @@ int _strcmp(char *s1, char *s2)
  */
 char *pathchecker(char *av)
 {
+	char *path_env = NULL;
 	struct stat st;
 	char **env;
 	char *p;
 	char *token;
-	char path[1024] = "";
+	char *path;
 
 	if (stat(av, &st) == 0)
-		return (av);
+	{
+		return (_strcpy(av));
+	}
 	for (env = environ; *env != NULL; env++)
 	{
 		if(_strcmp(*env, "PATH") == 0)
+		{
+			path_env = _strcpy(*env);
 			break;
+		}
 	}
-	p = *env;
+	p = path_env;
 	p = p + 5;
 	token = strtok(p, ":");
 	while (token != NULL)
 	{
+		path = malloc(strlen(token) + _strlen(av) + 2);
                 _strcat(path, token);
                 _strcat(path, "/");
                 _strcat(path, av);
 		if (stat(path, &st) == 0)
-		{
-			av = path;
-			return (av);
-		}
-		else
-			path[0] = '\0';
+			return (path);
 		token = strtok(NULL, ":");
+		free(path);
 	}
-	return (0);
+	return (NULL);
 }
 
 /**

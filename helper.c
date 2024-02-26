@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * _strlen - returns the length of a string.
  * Description: 'the program's description'
@@ -103,7 +104,7 @@ void _execute(char *path, char **args, char **envp)
 	if (path == NULL)
 	{
 		perror("Error:");
-		exit(1);
+		return;
 	}
 	child_pid = fork();
 	if (child_pid == -1)
@@ -116,7 +117,6 @@ void _execute(char *path, char **args, char **envp)
 		if (execve(path, args, envp) == -1)
 		{
 			perror("Error:");
-			exit(1);
 		}
 	}
 	else

@@ -35,19 +35,13 @@ int main(void)
 				argv = _realloc(argv, i, (2 * i));
 			token = strtok(NULL, " ");
 		}
-		argv[i] = NULL;
-		if (_strcmp(argv[0], "exit") == 0)
-			exit(0);
-		if (_strcmp(argv[0], "env") == 0)
-		{
-			print_env();
-			continue;
-		}
-		if (argv[0] != NULL)
-			_execute(argv[0], argv, NULL);
-		for (int j = 0; j < i; j++)
-			free(argv[j]);
-		free(argv);
+		 argv[i] = NULL;
+		 if (argv[0] != NULL)
+			 _execute(argv[0], argv, NULL);
+		 for (int j = 0; j < i; j++)
+			 free(argv[j]);
+		 free(argv);
+		 i = 0;
 	}
 	return (0);
 }
