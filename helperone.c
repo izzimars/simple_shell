@@ -95,24 +95,34 @@ char *pathchecker(char *av)
 	{
 		if (_strcmp(*env, "PATH") == 0)
 		{
-			path_env = _strcpy(*env);
+			path_env = _strcpy(*env + 5);
 			break;
 		}
 	}
 	p = path_env;
-	p = p + 5;
+	if (path_env == NULL)
+		return (NULL);
 	token = strtok(p, ":");
 	while (token != NULL)
 	{
 		path = malloc(strlen(token) + _strlen(av) + 2);
+		if (path == NULL)
+		{
+			free(path_env);
+			return (NULL);
+		}
 		_strcat(path, token);
 		_strcat(path, "/");
 		_strcat(path, av);
 		if (stat(path, &st) == 0)
+		{
+			free(path_env);
 			return (path);
+		}
 		token = strtok(NULL, ":");
 		free(path);
 	}
+	free(path_env);
 	return (NULL);
 }
 

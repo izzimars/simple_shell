@@ -17,7 +17,10 @@ int main(void)
 			buff_print("#cisfun$ ");
 		bytes_read = getline(&line, &len, stdin);
 		if (bytes_read == -1)
+		{
+			free(line);
 			exit(EXIT_FAILURE);
+		}
 		if (line[bytes_read - 1] == '\n')
 			line[bytes_read - 1] = '\0';
 		token = strtok(line, " ");
