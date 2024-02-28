@@ -17,7 +17,6 @@ int main(void)
 		bytes_read = getline(&line, &len, stdin);
 		if (bytes_read == -1)
 		{
-			perror("Error:");
 			exit(-1);
 		}
 		if (line[bytes_read - 1] == '\n')
@@ -46,4 +45,3 @@ int main(void)
 	}
 	return (0);
 }
-
