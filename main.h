@@ -22,5 +22,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *pathchecker(char *av);
 int _strcmp(char *s1, char *s2);
 void print_env();
+ssize_t custom_getline(char **lineptr, size_t *n, int stream);
 
 #endif
