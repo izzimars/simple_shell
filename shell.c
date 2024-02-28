@@ -16,9 +16,7 @@ int main(void)
 		buff_print("#cisfun$");
 		bytes_read = getline(&line, &len, stdin);
 		if (bytes_read == -1)
-		{
-			exit(-1);
-		}
+			exit(EXIT_FAILURE);
 		if (line[bytes_read - 1] == '\n')
 			line[bytes_read - 1] = '\0';
 		token = strtok(line, " ");
@@ -31,9 +29,11 @@ int main(void)
 				argv = _realloc(argv, i, (2 * i));
 			token = strtok(NULL, " ");
 		}
+		if (argv == NULL)
+			exit(EXIT_FAILURE);
 		argv[i] = NULL;
 		if (_strcmp(argv[0], "exit") == 0)
-			exit(1);
+			exit(EXIT_FAILURE);
 		else if (_strcmp(argv[0], "env") == 0)
 			print_env();
 		else if (argv[0] != NULL)
