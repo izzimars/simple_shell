@@ -21,7 +21,7 @@ void *_memcpy(void *dest, const void *src, size_t n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *pathchecker(char *av);
 int _strcmp(char *s1, char *s2);
-void print_env();
+void print_env(void);
 ssize_t custom_getline(char **lineptr, size_t *n, int stream);
 
 #endif
