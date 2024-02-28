@@ -13,7 +13,8 @@ int main(void)
 
 	while (1)
 	{
-		buff_print("#cisfun$");
+		if (isatty(STDIN_FILENO) == 1)
+			buff_print("#cisfun$ ");
 		bytes_read = getline(&line, &len, stdin);
 		if (bytes_read == -1)
 			exit(EXIT_FAILURE);
