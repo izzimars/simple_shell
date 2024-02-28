@@ -9,7 +9,7 @@ int main(void)
 	char *line = NULL, (*token), (**argv);
 	size_t len = 0;
 	ssize_t bytes_read;
-	int i = 0;
+	int i = 0, j;
 
 	while (1)
 	{
@@ -39,7 +39,7 @@ int main(void)
 			print_env();
 		else if (argv[0] != NULL)
 			_execute(argv[0], argv, NULL);
-		for (int j = 0; j < i; j++)
+		for (j = 0; j < i; j++)
 			free(argv[j]);
 		free(argv);
 		i = 0;
