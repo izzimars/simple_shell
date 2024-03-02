@@ -82,12 +82,8 @@ int _strcmp(char *s1, char *s2)
  */
 char *pathchecker(char *av)
 {
-	char *path_env = NULL;
+	char *path_env = NULL, (**env), (*p), (*token), (*path);
 	struct stat st;
-	char **env;
-	char *p;
-	char *token;
-	char *path;
 
 	if (stat(av, &st) == 0)
 		return (_strcpy(av));
