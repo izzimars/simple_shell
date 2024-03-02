@@ -13,13 +13,11 @@
 
 extern char **environ;
 
-void display_prompt(void);
-void execute(char **argv);
-
-char *locate_cmd(char *cmd);
+void display_line(char **line, size_t *len);
+char **space_allocation(char **argv, char *token);
 void buff_print(char *poutput);
 int _strlen(char *s);
-void _execute(char *path, char **args, char **envp);
+int _execute(char *path, char **args, char **envp);
 char *_strcpy(char *src);
 void *_memcpy(void *dest, const void *src, size_t n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);

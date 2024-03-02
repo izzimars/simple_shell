@@ -94,33 +94,16 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  *
  * Return: length of a string.
  */
-void _execute(char *path, char **args, char **envp)
+int _execute(char *path, char **args, char **envp)
 {
-	pid_t child_pid;
-	int status;
-
 	path = pathchecker(path);
 	if (path == NULL)
 	{
-		perror("Error:");
-		return;
+		return (-1);
 	}
-	child_pid = fork();
-	if (child_pid == -1)
+	else if (execve(path, args, envp) == -1)
 	{
-		perror("Error:");
-		exit(1);
+		return (-1);
 	}
-	else if (child_pid == 0)
-	{
-		if (execve(path, args, envp) == -1)
-		{
-			perror("Error:");
-		}
-	}
-	else
-	{
-		wait(&status);
-		sleep(1);
-	}
+	return (0);
 }
