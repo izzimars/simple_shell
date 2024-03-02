@@ -13,6 +13,10 @@
 
 extern char **environ;
 
+void display_prompt(void);
+void execute(char **argv);
+
+char *locate_cmd(char *cmd);
 void buff_print(char *poutput);
 int _strlen(char *s);
 void _execute(char *path, char **args, char **envp);

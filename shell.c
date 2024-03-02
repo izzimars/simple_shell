@@ -41,7 +41,7 @@ int main(void)
 		else if (_strcmp(argv[0], "env") == 0)
 			print_env();
 		else if (argv[0] != NULL)
-			_execute(argv[0], argv, NULL);
+			_execute(argv[0], argv, environ);
 		for (j = 0; j < i; j++)
 			free(argv[j]);
 		free(argv);
