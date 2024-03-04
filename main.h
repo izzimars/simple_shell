@@ -14,7 +14,7 @@
 extern char **environ;
 
 void display_line(char **line, size_t *len);
-char **space_allocation(char **argv, char *token);
+void space_allocation(char **argv, char *token);
 void buff_print(char *poutput);
 int _strlen(char *s);
 int _execute(char *path, char **args, char **envp);

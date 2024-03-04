@@ -6,16 +6,15 @@
  */
 int main(void)
 {
-	char *line = NULL, (**argv);
+	char *line = NULL, *argv[1024];
 	size_t len = 0;
-	int j, status;
+	int status;
 	pid_t child_pid;
 
 	while (1)
 	{
 		display_line(&line, &len);
-		argv = malloc(sizeof(char *) * 64);
-		argv = space_allocation(argv, line);
+		space_allocation(argv, line);
 		if (argv == NULL)
 			exit(EXIT_FAILURE);
 		if (_strcmp(argv[0], "exit") == 0)
@@ -38,9 +37,6 @@ int main(void)
 				sleep(1);
 			}
 		}
-		for (j = 0; argv[j] != NULL; j++)
-			free(argv[j]);
-		free(argv);
 	}
 	return (0);
 }

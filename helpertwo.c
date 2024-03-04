@@ -7,27 +7,18 @@
  *
  * Return: length of a string.
  */
-char **space_allocation(char **argv, char *token)
+void space_allocation(char **argv, char *token)
 {
 	int i = 0;
 
-	if (argv == NULL)
-		return (argv);
 	token = strtok(token, "  \t\n");
 	while (token != NULL)
 	{
 		argv[i] = _strcpy(token);
 		++i;
-		if (i == 64)
-		{
-			argv = _realloc(argv, i, (2 * i));
-			if (argv == NULL)
-				return (argv);
-		}
 		token = strtok(NULL, " \t\n");
 	}
 	argv[i] = NULL;
-	return (argv);
 }
 
 /**
