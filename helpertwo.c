@@ -48,6 +48,6 @@ void display_line(char **line, size_t *len)
 	if (bytes_read == -1)
 	{
 		free(*line);
-		exit(EXIT_FAILURE);
+		exit(0);
 	}
 }

@@ -19,7 +19,7 @@ int main(void)
 		if (argv == NULL)
 			exit(EXIT_FAILURE);
 		if (_strcmp(argv[0], "exit") == 0)
-			exit(EXIT_FAILURE);
+			exit(0);
 		else if (_strcmp(argv[0], "env") == 0)
 			print_env();
 		else
